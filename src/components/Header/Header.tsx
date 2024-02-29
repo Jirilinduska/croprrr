@@ -9,7 +9,7 @@ const Header = () => {
 
     const [showNav, setShowNav] = useState(false)
 
-  return (
+  return ( 
     <header className="
             fixed top-0 left-0 w-screen bg-primary h-[60px] flex justify-between items-center px-5 shadow-lg
             lg:px-20"
@@ -23,7 +23,7 @@ const Header = () => {
 
             <NavLink to="/" className="text-secondary hover:underline">Home</NavLink>
 
-            <NavLink to="/" className="text-secondary hover:underline">Shop</NavLink>
+            <NavLink to="/shop" className="text-secondary hover:underline">Shop</NavLink>
 
             <NavLink to="/" className="text-secondary hover:underline">Sales</NavLink>
 

@@ -11,7 +11,7 @@ return (
     >
         
         <Link 
-            to=""
+            to="/shop"
             className="block bg-main-default w-[200px] h-[50px] leading-[50px] text-center text-lg text-primary transition duration-500 rounded-lg
                         hover:bg-main-dark"
         >
