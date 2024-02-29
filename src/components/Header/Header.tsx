@@ -21,15 +21,15 @@ const Header = () => {
                         }`}
         >
 
-            <NavLink to="/" className="text-secondary hover:text-rose-default">Home</NavLink>
+            <NavLink to="/" className="text-secondary hover:underline">Home</NavLink>
 
-            <NavLink to="/" className="text-secondary hover:text-rose-default">Shop</NavLink>
+            <NavLink to="/" className="text-secondary hover:underline">Shop</NavLink>
 
-            <NavLink to="/" className="text-secondary hover:text-rose-default">Sales</NavLink>
+            <NavLink to="/" className="text-secondary hover:underline">Sales</NavLink>
 
-            <NavLink to="/" className="text-secondary hover:text-rose-default">Sign-In</NavLink>
+            <NavLink to="/" className="text-secondary hover:underline">Sign-In</NavLink>
 
-            <NavLink to="/" className="text-secondary hover:text-rose-default">Contact</NavLink>
+            <NavLink to="/" className="text-secondary hover:underline">Contact</NavLink>
 
         </nav>
 
@@ -46,7 +46,7 @@ const Header = () => {
 
             <div className="
                         text-3xl transition duration-500 
-                        hover:text-rose-default"
+                        hover:text-main-dark"
             >
                 <RiShoppingCart2Line className="cursor-pointer"/>
             </div>
@@ -54,7 +54,7 @@ const Header = () => {
             <div 
                 className="
                         text-3xl transition duration-500 
-                        hover:text-rose-default 
+                        hover:text-main-dark
                         lg:hidden" 
                 onClick={ () => setShowNav(!showNav) }
             >
