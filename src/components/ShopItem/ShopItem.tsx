@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 const ShopItem: React.FC<ShoppingItem> = ( { id, brand, gender, price, sale, size, title, type, image } ) => {
   return (
     <Link
-        to="" 
+        to={`/preview/${id}`} 
         className="w-80 border-2 border-gray rounded-lg overflow-hidden transition duration-500 hover:shadow-lg">
 
         <div 

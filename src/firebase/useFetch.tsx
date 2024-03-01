@@ -12,7 +12,6 @@ export interface ShoppingItem {
     title: string,
     type: string,
     image: string,
-
 }
 
 const useFetch = () => {
