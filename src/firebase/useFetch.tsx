@@ -10,7 +10,8 @@ export interface ShoppingItem {
     sale: boolean,
     size: string[],
     title: string,
-    type: string
+    type: string,
+    image: string,
 
 }
 

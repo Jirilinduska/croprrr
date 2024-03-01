@@ -18,7 +18,7 @@ const Newsletter = () => {
 
             <p className="mb-4 w-[90%] text-sm text-center sm:w-[100%] lg:text-[16px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, laudantium?</p>
 
-            <div className="flex items-center border-2 w-[100%] mx-auto rounded-lg overflow-hidden
+            <div className="flex items-center border-2 border-gray w-[100%] mx-auto rounded-lg overflow-hidden
                             sm:w-[90%]
                             lg:w-[50%]"
             >

@@ -11,7 +11,7 @@ const Header = () => {
 
   return ( 
     <header className="
-            fixed top-0 left-0 w-screen bg-primary h-[60px] flex justify-between items-center px-5 shadow-lg
+            fixed top-0 left-0 w-screen bg-primary h-[60px] flex justify-between items-center px-5 shadow-lg z-10
             lg:px-20"
     >
 
