@@ -125,7 +125,7 @@ const ShopSection = () => {
             <div className="flex justify-center items-center flex-wrap gap-6">
 
                 <div 
-                    className="fixed top-24 left-6 bg-gray p-4 text-2xl rounded-full cursor-pointer z-20 animate-pulse"
+                    className="fixed top-24 left-6 bg-main-default p-4 text-2xl rounded-full cursor-pointer z-10 animate-pulse"
                     onClick={ () => setShowFilter(true)}
                 >
                     <IoFilter />

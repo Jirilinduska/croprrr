@@ -16,7 +16,7 @@ const Header = () => {
     >
 
         <nav className={`${ showNav 
-                            ? 'fixed w-screen h-screen top-[60px] left-0 z-1 text-2xl flex flex-col gap-10 justify-center items-center bg-primary lg:block lg:static lg:text-lg lg:bg-transparent lg:h-auto lg:w-auto lg:space-x-6' 
+                            ? 'fixed w-screen h-screen top-[60px] left-0 z-50 text-2xl flex flex-col gap-10 justify-center items-center bg-primary lg:block lg:static lg:text-lg lg:bg-transparent lg:h-auto lg:w-auto lg:space-x-6' 
                             : 'hidden lg:block lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:space-x-6'
                         }`}
         >

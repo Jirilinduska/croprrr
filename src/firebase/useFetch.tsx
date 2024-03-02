@@ -4,6 +4,7 @@ import { projectFirestore } from "./config"
 
 export interface ShoppingItem {
     id: string,
+    beforePrice: string,
     brand: string,
     gender: string,
     price: string,

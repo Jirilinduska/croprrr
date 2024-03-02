@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 
 import useFetch from "../../firebase/useFetch"
 import OneItemPreview from "../../components/OneItemPreview/OneItemPreview"
+import SliderItems from "../../components/SliderItems/SliderItems"
 import { useEffect, useState } from "react"
 import { ShoppingItem } from "../../firebase/useFetch"
 
@@ -32,6 +33,7 @@ const Preview = () => {
   return (
     <>
         {oneItem && <OneItemPreview { ...oneItem } />}
+        {oneItem && <SliderItems /> }
     </>
   )
 }
