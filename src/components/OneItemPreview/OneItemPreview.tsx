@@ -7,6 +7,22 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
 
     const [value, setValue] = useState(1)
 
+    const handleItemToLS = (itemID: string, itemValue: number) => {
+        
+        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
+
+        const isItemIn = arrayLS.find( (x: ShoppingItem) => x.id === itemID)
+
+        if(!isItemIn) {
+            const newItemToLS = {
+                id: itemID,
+                itemValue: value
+            }
+            arrayLS.push(newItemToLS)
+            localStorage.setItem('CROPRR-CART', JSON.stringify(arrayLS))
+        }
+    }
+
   return (
     <section className="
             pt-24 w-[100%] mx-auto min-h-[100vh] bg-gray
@@ -78,6 +94,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             >
     
                 <button 
+                    onClick={ () => handleItemToLS(id, value)}
                     className=
                         "bg-main-default text-primary w-[50%] h-10 md:w-[30%] rounded-lg"
                     >

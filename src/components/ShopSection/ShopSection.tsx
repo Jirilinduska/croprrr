@@ -7,6 +7,7 @@ import { IoIosWoman } from "react-icons/io";
 
 
 import ShopItem from "../ShopItem/ShopItem"
+import Loader from "../Loader/Loader";
 import { useEffect, useState } from "react"
 
 const ShopSection = () => {
@@ -59,7 +60,7 @@ const ShopSection = () => {
 
         {error && <p>Something went wrong! {error.message}</p>}
 
-        {loading && <p>Loading...</p>}
+        {loading && <Loader /> }
 
 
         {/* FILTER */}

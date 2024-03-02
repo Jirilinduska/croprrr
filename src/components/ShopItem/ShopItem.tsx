@@ -1,12 +1,12 @@
 
-import { ShoppingItem } from "../../firebase/useFetch"
+import { ShoppingItem } from "../../firebase/useFetch" 
 import { Link } from "react-router-dom"
 
-const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sale, size, title, type, image } ) => {
-  return (
+const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sale, size, title, type, image } ) => { 
+    
+  return ( 
     <Link
         to={`/preview/${id}`} 
-        // className="w-80 border-2 border-gray rounded-lg overflow-hidden transition duration-500 hover:shadow-lg">
         className="w-80 rounded-lg overflow-hidden transition duration-500 hover:shadow-lg">
 
         <div 
@@ -17,7 +17,7 @@ const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sal
         </div>
 
         <div className="flex justify-between px-3 py-2">
-            <h3 className="">{title}</h3>
+            <h3 className="text-sm lg:text-base">{title}</h3>
             <p className="text-main-dark">{gender}</p>
         </div>      
 

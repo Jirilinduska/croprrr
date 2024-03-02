@@ -4,7 +4,7 @@ import { FaRegEnvelope } from "react-icons/fa";
 
 const Newsletter = () => {
   return (
-    <section className="container h-[70vh] mx-auto flex justify-center items-center">
+    <section className="container h-[60vh] mx-auto flex justify-center items-center">
 
         <div className="text-center w-[100%]">
 

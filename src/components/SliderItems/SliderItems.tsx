@@ -1,5 +1,6 @@
 
 import ShopItem from "../ShopItem/ShopItem"
+import Loader from "../Loader/Loader"
 import useFetch from "../../firebase/useFetch"
 import { useEffect, useState } from "react"
 import Slider from 'react-slick'
@@ -44,9 +45,10 @@ const SliderItems = () => {
     }, [data] )
 
   return ( 
-    <section className="h-[50vh] overflow-hidden"> 
+    <section className="overflow-hidden"> 
 
       <Slider {...settings}>
+        {loading && <Loader /> }
         {items && items.map( (x) => <ShopItem key={x.id} {...x} /> )} 
       </Slider>
 

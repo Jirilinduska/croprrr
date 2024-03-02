@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
-import { NavLink } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 
 const Header = () => {
 
@@ -35,21 +35,23 @@ const Header = () => {
 
         <div className="lg:hidden">
 
-            <NavLink to="/">
+            <Link to="/">
                 {/* <img src="" alt="" className="" /> */}
                 <p>LogoForNow</p>
-            </NavLink>
+            </Link>
 
         </div>
 
         <div className="flex items-center gap-6">
 
-            <div className="
+            <Link 
+                    to="/cart"
+                    className="
                         text-3xl transition duration-500 
                         hover:text-main-dark"
             >
                 <RiShoppingCart2Line className="cursor-pointer"/>
-            </div>
+            </Link>
 
             <div 
                 className="
