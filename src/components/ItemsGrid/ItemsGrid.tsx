@@ -17,7 +17,7 @@ const ItemsGrid = () => {
         </Link>
 
         <Link 
-            to="" 
+            to="/shop" 
             className="relative row-span-1 lg:col-span-1 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
             style={ {backgroundImage: 'url("/images/shopitems/men/the-north-face-m-ss-shirt.jpg")'} }
         >
@@ -25,7 +25,7 @@ const ItemsGrid = () => {
         </Link>
 
         <Link 
-            to="" 
+            to="/shop" 
             className="relative row-span-1 lg:row-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
             style={ {backgroundImage: 'url("/images/shopitems/men/pulp-fiction-jack-rabbit.webp")'} }
         >
@@ -33,7 +33,7 @@ const ItemsGrid = () => {
         </Link>
 
         <Link 
-            to="" 
+            to="/shop" 
             className="relative row-span-1 lg:col-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
             style={ {backgroundImage: 'url("/images/shopitems/women/women-veja-venturi.jpg")'} }
         >
