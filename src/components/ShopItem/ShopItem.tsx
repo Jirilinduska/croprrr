@@ -11,7 +11,7 @@ const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sal
 
         <div 
             className="relative h-[200px] w-[100%] bg-center bg-cover bg-no-repeat"
-            style={ {backgroundImage: `url(${image})`} }
+            style={ {backgroundImage: `url(${image[0]})`} }
         >
             {sale && <p className="uppercase absolute bottom-2 left-2 bg-main-default text-white px-3 py-1 rounded-lg">sale</p>}
         </div>

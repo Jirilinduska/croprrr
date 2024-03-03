@@ -1,11 +1,21 @@
 
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ShoppingItem } from "../../firebase/useFetch"
+import useFetch from "../../firebase/useFetch"
+import Loader from "../Loader/Loader"
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
+
 
 const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
 
     const [value, setValue] = useState(1)
+
+    const { loading } = useFetch()
 
     const handleItemToLS = (itemID: string, itemValue: number) => {
         
@@ -23,16 +33,26 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         }
     }
 
-  return (
+    const settings = {
+        dots: true,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+    }
+
+  return ( 
     <section className="
-            pt-24 w-[100%] mx-auto min-h-[100vh] bg-gray
-            lg:flex lg:justify-between lg:gap-10"
-    >
+            py-24 w-[100%] mx-auto min-h-[100vh] bg-gray
+            lg:flex lg:justify-between lg:gap-10" 
+    > 
+ 
+        { loading && <Loader/>}
 
         {/* TEXT */}
         <div className="
                 px-4 mb-10
-                lg:w-[30%] lg:flex lg:flex-col"
+                lg:w-[50%] lg:flex lg:flex-col"
         >
 
             <h3 className="font-bold text-xl mb-4">{title}</h3>
@@ -96,7 +116,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                 <button 
                     onClick={ () => handleItemToLS(id, value)}
                     className=
-                        "bg-main-default text-primary w-[50%] h-10 md:w-[30%] rounded-lg transition duration-500 hover:bg-main-dark"
+                        "bg-main-default text-primary w-[90%] h-10 sm:w-[40%] md:w-[30%] rounded-lg transition duration-500 hover:bg-main-dark"
                     >
                         Add To Cart
                 </button>
@@ -110,11 +130,25 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         {/* IMAGE */}
         <div 
             className="
-                    w-[95%] mx-auto h-[250px] bg-cover bg-no-repeat bg-center
-                    sm:h-[500px] sm:w-[100%]
-                    lg:w-[70%]"
-            style={ {backgroundImage: `url(${image})`}}
+                    overflow-hidden pb-10
+                    lg:w-[50%]"
         >
+
+                <Slider {...settings}>
+                    { image.map( (x) => {
+                        return (
+                            <div className="w-[100%] h-[450px]">
+                                <img 
+                                    src={x} 
+                                    className="w-[100%] h-[100%] object-contain"
+                                    alt={title}
+                                />
+                            </div>
+                        )
+                    }) }
+                </Slider>
+
+
         </div>
 
     </section>
