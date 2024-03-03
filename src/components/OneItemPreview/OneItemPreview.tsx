@@ -70,7 +70,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                 <div className="flex justify-between items-center border-2 border-main-default rounded-lg">
 
                     <button 
-                        className="w-9 h-9 bg-main-default font-bold"
+                        className="w-9 h-9 bg-main-default font-bold active:bg-main-dark"
                         onClick={ () => value === 1 ? setValue(1) : setValue(value - 1) }
                     >
                         -
@@ -79,7 +79,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                     <p className="w-9 h-9 flex items-center justify-center font-bold">{value}</p>
 
                     <button 
-                        className="w-9 h-9 bg-main-default font-bold"
+                        className="w-9 h-9 bg-main-default font-bold active:bg-main-dark"
                         onClick={ () => setValue( value + 1 ) }
                     >
                         +
@@ -96,7 +96,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                 <button 
                     onClick={ () => handleItemToLS(id, value)}
                     className=
-                        "bg-main-default text-primary w-[50%] h-10 md:w-[30%] rounded-lg"
+                        "bg-main-default text-primary w-[50%] h-10 md:w-[30%] rounded-lg transition duration-500 hover:bg-main-dark"
                     >
                         Add To Cart
                 </button>

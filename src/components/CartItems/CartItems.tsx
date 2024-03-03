@@ -1,6 +1,7 @@
 
 import { useEffect, useState } from "react"
 import CartItem from "../CartItem/CartItem"
+import EmptyCart from "../EmptyCart/EmptyCart"
 import { ShoppingItem } from "../../firebase/useFetch"
 
 
@@ -10,12 +11,19 @@ const CartItems = () => {
 
     const handleItemsFromLS = () => {
         const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
-        setItemsInCart(arrayLS)
+        setItemsInCart(arrayLS)  
+    }
+
+    const handleRemoveAll = () => {
+        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
+        const newArray: ShoppingItem[] = []
+        localStorage.setItem('CROPRR-CART', JSON.stringify(newArray))
+        setItemsInCart(newArray)
     }
 
 
     useEffect( () => {
-        handleItemsFromLS()
+        handleItemsFromLS()        
     },[])
 
   return (
@@ -25,12 +33,19 @@ const CartItems = () => {
 
             <h3 className="font-bold">Shopping Cart</h3>
         
-            <p className="underline text-red-500 cursor-pointer">Remove all</p>
+            <p 
+                className="underline text-red-500 cursor-pointer"
+                onClick={handleRemoveAll}
+            >
+                { itemsInCart && itemsInCart.length >= 1 ? 'Remove all' : '' }
+            </p>
         
         </div>
 
+
         <div className="">
             { itemsInCart && itemsInCart.map( (oneItem) => <CartItem key={oneItem.id} {...oneItem}/>)}
+            { itemsInCart && itemsInCart.length === 0 ? <EmptyCart /> : null }
         </div>
 
 
