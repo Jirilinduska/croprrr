@@ -1,15 +1,10 @@
-
-
-import { useState } from "react"
+import { useState } from "react" 
 import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
 import Loader from "../Loader/Loader"
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
-
-
 
 const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
 

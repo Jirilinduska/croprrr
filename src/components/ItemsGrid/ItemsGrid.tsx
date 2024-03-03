@@ -10,7 +10,7 @@ const ItemsGrid = () => {
 
         <Link 
             to="/shop" 
-            className="relative row-span-1 lg:col-span-1 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
+            className="relative row-span-1 lg:col-span-1 rounded-lg flex items-end bg-center bg-cover bg-no-repeat transition duration-500 hover:shadow-lg"
             style={ {backgroundImage: 'url("/images/shopitems/men/men-vans-old-skool.jpg")'} }
         >
             <p className="absolute left-0 bottom-0 w-[100%] p-2 text-3xl font-bold bg-gray bg-opacity-60">Fresh Designs</p>
@@ -18,15 +18,15 @@ const ItemsGrid = () => {
 
         <Link 
             to="/shop" 
-            className="relative row-span-1 lg:col-span-1 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
+            className="relative row-span-1 lg:col-span-1 rounded-lg flex items-end bg-center bg-cover bg-no-repeat transition duration-500 hover:shadow-lg"
             style={ {backgroundImage: 'url("/images/shopitems/men/the-north-face-m-ss-shirt.jpg")'} }
         >
-            <p className="absolute left-0 bottom-0 w-[100%] p-2 text-3xl font-bold bg-gray bg-opacity-60">Shirts</p>
+            <p className="absolute left-0 bottom-0 w-[100%] p-2 text-3xl font-bold bg-gray bg-opacity-60 transition duration-500 hover:shadow-lg">Shirts</p>
         </Link>
 
         <Link 
             to="/shop" 
-            className="relative row-span-1 lg:row-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
+            className="relative row-span-1 lg:row-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat transition duration-500 hover:shadow-lg"
             style={ {backgroundImage: 'url("/images/shopitems/men/pulp-fiction-jack-rabbit.webp")'} }
         >
             <p className="absolute left-0 bottom-0 w-[100%] p-2 text-3xl font-bold bg-gray bg-opacity-60">Hoodies</p>
@@ -34,7 +34,7 @@ const ItemsGrid = () => {
 
         <Link 
             to="/shop" 
-            className="relative row-span-1 lg:col-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat"
+            className="relative row-span-1 lg:col-span-2 rounded-lg flex items-end bg-center bg-cover bg-no-repeat transition duration-500 hover:shadow-lg"
             style={ {backgroundImage: 'url("/images/shopitems/women/women-veja-venturi.jpg")'} }
         >
             <p className="absolute left-0 bottom-0 w-[100%] p-2 text-3xl font-bold bg-gray bg-opacity-60">Women</p>
