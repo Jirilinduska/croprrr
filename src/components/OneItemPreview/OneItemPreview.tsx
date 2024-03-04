@@ -3,12 +3,15 @@ import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
 import Loader from "../Loader/Loader"
 import Slider from 'react-slick'
+import AddToCartNotif from "../AddToCartNotif/AddToCartNotif"
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
 
     const [value, setValue] = useState(1)
+    const [notifSuccess, setNotifSuccess] = useState(false)
+    const [notifError, setNotifError] = useState(false)
 
     const { loading } = useFetch()
 
@@ -25,9 +28,27 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             }
             arrayLS.push(newItemToLS)
             localStorage.setItem('CROPRR-CART', JSON.stringify(arrayLS))
+            handleNotificationSuccess()
+        } else {
+            handleNotificationError()
         }
     }
 
+    const handleNotificationSuccess = () => {
+        setNotifSuccess(true)
+        setTimeout(() => {
+            setNotifSuccess(false)
+        }, 2000);
+    }
+
+    const handleNotificationError = () => {
+        setNotifError(true)
+        setTimeout(() => {
+            setNotifError(false)
+        }, 2000);
+    }
+
+    // Slider settings
     const settings = {
         dots: true,
         infinite: false,
@@ -43,6 +64,22 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
     > 
  
         { loading && <Loader/>}
+
+        { notifSuccess && <AddToCartNotif 
+                                itemTitle={title}
+                                notifMessage={` has been added to your cart.`}
+                                bgColor={'#27D507'}
+                                currentState={notifSuccess}
+                            /> 
+        }
+
+        { notifError && <AddToCartNotif 
+                            itemTitle={title}
+                            notifMessage={` is already in your cart.`}
+                            bgColor={'#FF4136'}
+                            currentState={notifError}
+                        /> 
+        }
 
         {/* TEXT */}
         <div className="
