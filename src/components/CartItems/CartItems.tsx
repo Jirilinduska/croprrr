@@ -31,7 +31,9 @@ const CartItems = () => {
 
         <div className="mx-auto flex justify-between items-center mb-4 px-2">
 
-            <h3 className="font-bold">Shopping Cart</h3>
+            <h3 className="font-bold">
+                { itemsInCart && itemsInCart.length >= 1 ? 'Shopping Cart' : '' }
+            </h3>
         
             <p 
                 className="underline text-red-500 cursor-pointer"

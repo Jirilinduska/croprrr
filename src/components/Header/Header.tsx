@@ -3,13 +3,18 @@ import { useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
-
 import { RxCross1 } from "react-icons/rx";
 import { NavLink, Link } from "react-router-dom"
+import ModalSearch from "../ModalSearch/ModalSearch";
 
 const Header = () => {
 
     const [showNav, setShowNav] = useState(false)
+    const [showSearch, setShowSearch] = useState(false)
+
+    const closeModalSearch = () => {
+        setShowSearch(false)
+    }
 
   return ( 
     <header className="
@@ -17,6 +22,7 @@ const Header = () => {
             lg:px-20 lg:justify-normal"
     >
 
+        {/* LOGO */}
         <div 
             className="h-[100%] lg:flex-grow-0 mr-10"
             onClick={ () => setShowNav(false) } 
@@ -32,11 +38,12 @@ const Header = () => {
 
         </div>
 
+        {/* NAVIGATION */}
         <nav className={`${ showNav 
                             ? 'fixed w-screen h-screen top-[60px] left-0 z-50 text-2xl flex flex-col gap-10 justify-center items-center bg-primary lg:flex-grow lg:block lg:static lg:text-lg lg:bg-transparent lg:h-auto lg:w-auto lg:space-x-6' 
                             : 'hidden lg:block lg:static lg:bg-transparent lg:h-auto lg:w-auto lg:space-x-6 lg:flex-grow'
-                        }`}
-        >
+                        }`} 
+        > 
 
             <NavLink onClick={ () => setShowNav(false) } to="/" className="text-secondary hover:underline">Home</NavLink>
 
@@ -50,16 +57,23 @@ const Header = () => {
 
         </nav>
 
-
+        {/* ICONS */}
         <div className="flex items-center gap-6 flex-grow-0">
 
+            {/* Search */}
             <div 
                 className="text-3xl transition duration-500 hover:text-main-dark" 
-                onClick={ () => setShowNav(false) }
+                onClick={ () => {
+                    setShowNav(false)
+                    setShowSearch(true)
+                } }
             >
                 <IoSearch className="cursor-pointer"/>
             </div>
+            
+            { showSearch && <ModalSearch closeModalSearch={closeModalSearch}/> }
 
+            {/* Shopping Cart */}
             <Link 
                 to="/cart"
                 onClick={ () => setShowNav(false) }
@@ -68,6 +82,7 @@ const Header = () => {
                 <RiShoppingCart2Line className="cursor-pointer"/>
             </Link>
 
+            {/* Hamburger menu */}
             <div 
                 className="text-3xl transition duration-500 hover:text-main-dark lg:hidden" 
                 onClick={ () => setShowNav(!showNav) }
