@@ -21,7 +21,7 @@ const ModalSearch: React.FC<ModalSearchProps> = ( { closeModalSearch } ) => {
 
         if(data) {
 
-            const value = inputValue
+            const value = inputValue.trim()
 
             if(value === '') {
                 setArray([])
@@ -64,7 +64,9 @@ const ModalSearch: React.FC<ModalSearchProps> = ( { closeModalSearch } ) => {
                 placeholder="Search product..."
                 className="w-[100%] h-[100%] text-sm focus:outline-none px-2 lg:text-lg" 
                 value={inputValue}
-                onChange={ (e: ChangeEvent<HTMLInputElement> ) => setInputValue(e.target.value) }
+                onChange={ (e: ChangeEvent<HTMLInputElement> ) => {
+                    setInputValue(e.target.value)
+                } }
             />
 
             <div className="absolute top-full left-0 w-[100%] max-h-[600px] overflow-y-auto">
