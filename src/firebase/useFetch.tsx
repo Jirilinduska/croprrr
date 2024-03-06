@@ -14,6 +14,7 @@ export interface ShoppingItem {
     type: string,
     image: string[],
     itemValue: number, 
+    chosenSize: string,
 }
 
 const useFetch = () => {

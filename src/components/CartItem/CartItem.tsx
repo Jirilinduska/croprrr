@@ -6,7 +6,7 @@ import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
 import Loader from "../Loader/Loader"
 
-const CartItem: React.FC<ShoppingItem> = ( { id, itemValue } ) => {
+const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
 
     const { data, loading, error } = useFetch()
 
@@ -62,7 +62,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemValue } ) => {
                     {oneItem.title}
                 </Link>
 
-                <p className="mt-4">XXL</p>
+                <p className="mt-4">Size: {chosenSize}</p>
 
             </div>
 

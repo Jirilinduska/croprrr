@@ -15,29 +15,17 @@ const ModalSearch: React.FC<ModalSearchProps> = ( { closeModalSearch } ) => {
 
     const { data, loading, error } = useFetch()
 
-    const [array, setArray] = useState<ShoppingItem[]>([])
+    const [array, setArray] = useState<ShoppingItem[]>()
+
+    const handleFilter = ( event: ChangeEvent<HTMLInputElement> ) => {
+        setInputValue(event.target.value)
+    }
     
     const filterArray = () => {
+        const filtered = data?.filter( (x) => x.title.toLowerCase().includes(inputValue.toLowerCase())) 
+        setArray(filtered)
+    }    
 
-        if(data) {
-
-            const value = inputValue.trim()
-
-            if(value === '') {
-                setArray([])
-            }
-
-            if(value !== '') {
-
-                const filtered = data.filter( (x) => {
-                    return x.title.includes(value)
-                })
-
-                setArray(filtered)
-            }
-
-        }
-    }
 
     useEffect( () => {
         filterArray()
@@ -64,9 +52,7 @@ const ModalSearch: React.FC<ModalSearchProps> = ( { closeModalSearch } ) => {
                 placeholder="Search product..."
                 className="w-[100%] h-[100%] text-sm focus:outline-none px-2 lg:text-lg" 
                 value={inputValue}
-                onChange={ (e: ChangeEvent<HTMLInputElement> ) => {
-                    setInputValue(e.target.value)
-                } }
+                onChange={handleFilter}
             />
 
             <div className="absolute top-full left-0 w-[100%] max-h-[600px] overflow-y-auto">

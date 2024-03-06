@@ -1,4 +1,4 @@
-import { useState } from "react" 
+import { ChangeEvent, useState } from "react" 
 import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
 import Loader from "../Loader/Loader"
@@ -10,6 +10,7 @@ import 'slick-carousel/slick/slick-theme.css';
 const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
 
     const [value, setValue] = useState(1)
+    const [itemSize, setItemSize] = useState('')
     const [notifSuccess, setNotifSuccess] = useState(false)
     const [notifError, setNotifError] = useState(false)
 
@@ -24,7 +25,8 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         if(!isItemIn) {
             const newItemToLS = {
                 id: itemID,
-                itemValue: value
+                itemValue: value,
+                chosenSize: itemSize
             }
             arrayLS.push(newItemToLS)
             localStorage.setItem('CROPRR-CART', JSON.stringify(arrayLS))
@@ -32,6 +34,10 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         } else {
             handleNotificationError()
         }
+    }
+
+    const handleItemSize = (event: ChangeEvent<HTMLSelectElement>) => {
+        setItemSize(event.target.value)
     }
 
     const handleNotificationSuccess = () => {
@@ -81,7 +87,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                         /> 
         }
 
-        {/* TEXT */}
+        {/* TEXT - ITEM INFO*/}
         <div className="
                 px-4 mb-10
                 lg:w-[50%] lg:flex lg:flex-col"
@@ -97,6 +103,8 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
 
             </div>
 
+
+            {/* Select size element */}
             <div className="flex justify-between items-center mb-6">
 
                 <p className="">{type}</p>
@@ -105,7 +113,8 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                     name="" 
                     id=""
                     className="w-20 h-9 border-2 border-gray focus:outline-none cursor-pointer"
-                    required
+                    value={itemSize}
+                    onChange={handleItemSize}
                 >
                     {size.map( (x) => <option value={x}>{x}</option>)}
                 </select>
