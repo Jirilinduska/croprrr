@@ -13,7 +13,7 @@ export interface ShoppingItem {
     title: string,
     type: string,
     image: string[],
-    itemValue: number, 
+    itemQuantity: number, 
     chosenSize: string,
 }
 

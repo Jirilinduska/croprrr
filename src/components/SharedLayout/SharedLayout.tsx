@@ -3,14 +3,21 @@
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
 import { Outlet } from "react-router-dom"
+import { CartProvider } from "../../contexts/CartContext"
 
 
 const SharedLayout = () => {
   return (
     <>
-        <Header />
-        <Outlet />
-        <Footer />
+        <CartProvider>
+
+            <Header />
+            
+            <Outlet />
+
+            <Footer />
+
+        </CartProvider>
     </>
   )
 }

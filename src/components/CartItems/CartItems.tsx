@@ -3,28 +3,20 @@ import { useEffect, useState } from "react"
 import CartItem from "../CartItem/CartItem"
 import EmptyCart from "../EmptyCart/EmptyCart"
 import { ShoppingItem } from "../../firebase/useFetch"
+import { useCart } from "../../contexts/CartContext"
 
 
 const CartItems = () => {
 
     const [itemsInCart, setItemsInCart] = useState<ShoppingItem[] | null>(null)
+    
+    const { totalItems, currentCart, removeAllItems } = useCart() 
 
-    const handleItemsFromLS = () => {
-        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
-        setItemsInCart(arrayLS)  
-    }
-
-    const handleRemoveAll = () => {
-        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
-        const newArray: ShoppingItem[] = []
-        localStorage.setItem('CROPRR-CART', JSON.stringify(newArray))
-        setItemsInCart(newArray)
-    }
-
+    const handleGetCartItems = () => setItemsInCart(currentCart)  
 
     useEffect( () => {
-        handleItemsFromLS()        
-    },[])
+        handleGetCartItems()        
+    }, [currentCart] )
 
   return (
     <section className="py-24">
@@ -37,7 +29,9 @@ const CartItems = () => {
         
             <p 
                 className="underline text-red-500 cursor-pointer"
-                onClick={handleRemoveAll}
+                onClick={ () => {
+                    removeAllItems()
+                }}
             >
                 { itemsInCart && itemsInCart.length >= 1 ? 'Remove all' : '' }
             </p>
@@ -50,7 +44,19 @@ const CartItems = () => {
             { itemsInCart && itemsInCart.length === 0 ? <EmptyCart /> : null }
         </div>
 
+        <div className="w-[90%] mx-auto">
 
+            <div className="flex items-center justify-between mb-8">
+                <p className="font-bold">Total items</p>
+                <p className="font-bold">{totalItems}</p>
+            </div>
+
+            <div className="flex items-center justify-between">
+                <p className="font-bold">Total Price</p>
+                <p className="font-bold">€</p>
+            </div>
+
+        </div>
 
     </section>
   )

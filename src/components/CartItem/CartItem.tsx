@@ -4,35 +4,29 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
+import { useCart } from "../../contexts/CartContext"
 import Loader from "../Loader/Loader"
 
-const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
+const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) => {
 
     const { data, loading, error } = useFetch()
+    const { removeItemFromCart } = useCart()
 
     const [oneItem, setOneItem] = useState<ShoppingItem>()
-    const [value, setValue] = useState(0)
+    const [quantity, setQuantity] = useState(0)
 
     const handleFindItem = () => {
+
         if(data) {
             const item = data.find( (x) => x.id === id )
             setOneItem(item)
         }
     }
 
-    const handleRemoveItem = () => {
-        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
-        const itemToRemove = arrayLS.find( (x: ShoppingItem) => x.id === id)
-        const indexToRemove = arrayLS.indexOf(itemToRemove)
-        arrayLS.splice(indexToRemove, 1)  
-        localStorage.setItem('CROPRR-CART', JSON.stringify(arrayLS))
-        window.location.reload()
-    }
-
     useEffect( () => {
         handleFindItem()
-        setValue(itemValue)        
-    }, [data, itemValue] )
+        setQuantity(itemQuantity)     
+    }, [data, itemQuantity] )
 
   return (
     <>
@@ -49,7 +43,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
                 className="
                         hidden bg-center bg-cover bg-no-repeat w-[20%] h-[100%]
                         sm:block"
-                style={ {backgroundImage: `url(${oneItem.image})`}}
+                style={ {backgroundImage: `url(${oneItem.image[0]})`}} 
             >    
             </div>
 
@@ -70,7 +64,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
 
                 <button 
                     className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
-                    onClick={ () => value === 1 ? setValue(1) : setValue(value - 1)}
+                    onClick={ () => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}
                 >
                     -
                 </button>
@@ -78,12 +72,12 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
                 <p 
                     className="h-[30px] w-[30px] bg-primary md:w-[40px] md:h-[40px] flex items-center justify-center font-bold"
                 >
-                    {value}
+                    {quantity}
                 </p>
                 
                 <button 
                     className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
-                    onClick={ () => setValue(value + 1) }
+                    onClick={ () => setQuantity(quantity + 1) }
                 >
                     +
                 </button>
@@ -94,12 +88,12 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemValue, chosenSize } ) => {
 
                 <p 
                     className="text-red-500 underline cursor-pointer mb-4"
-                    onClick={handleRemoveItem}
+                    onClick={ () => removeItemFromCart(id) }
                 >
                     Remove
                 </p>
 
-                <p className="font-bold">{(value * parseFloat(oneItem.price)).toFixed(2)}€</p>
+                <p className="font-bold">{(quantity * (parseFloat(oneItem.price))).toFixed(2)}€</p>
 
             </div>
 

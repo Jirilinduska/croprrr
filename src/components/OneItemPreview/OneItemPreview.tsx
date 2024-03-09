@@ -7,29 +7,24 @@ import AddToCartNotif from "../AddToCartNotif/AddToCartNotif"
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+import { useCart } from "../../contexts/CartContext"
+
 const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
 
-    const [value, setValue] = useState(1)
-    const [itemSize, setItemSize] = useState('')
+    const [itemQuantity, setItemQuantity] = useState(1)
+    const [itemSize, setItemSize] = useState(size[0])
     const [notifSuccess, setNotifSuccess] = useState(false)
     const [notifError, setNotifError] = useState(false)
 
     const { loading } = useFetch()
+    const { currentCart, addItemToCart } = useCart()
 
-    const handleItemToLS = (itemID: string, itemValue: number) => {
+    const handleItemToCart = (itemID: string, itemValue: number, itemSize: string) => {
         
-        const arrayLS = JSON.parse(localStorage.getItem('CROPRR-CART') || "[]")
-
-        const isItemIn = arrayLS.find( (x: ShoppingItem) => x.id === itemID)
+        const isItemIn = currentCart.find( (x: ShoppingItem) => x.id === itemID)
 
         if(!isItemIn) {
-            const newItemToLS = {
-                id: itemID,
-                itemValue: value,
-                chosenSize: itemSize
-            }
-            arrayLS.push(newItemToLS)
-            localStorage.setItem('CROPRR-CART', JSON.stringify(arrayLS))
+            addItemToCart(itemID, itemValue, itemSize)
             handleNotificationSuccess()
         } else {
             handleNotificationError()
@@ -132,16 +127,16 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
 
                     <button 
                         className="w-9 h-9 bg-main-default font-bold active:bg-main-dark"
-                        onClick={ () => value === 1 ? setValue(1) : setValue(value - 1) }
+                        onClick={ () => itemQuantity === 1 ? setItemQuantity(1) : setItemQuantity(itemQuantity - 1) }
                     >
                         -
                     </button>
 
-                    <p className="w-9 h-9 flex items-center justify-center font-bold">{value}</p>
+                    <p className="w-9 h-9 flex items-center justify-center font-bold">{itemQuantity}</p>
 
                     <button 
                         className="w-9 h-9 bg-main-default font-bold active:bg-main-dark"
-                        onClick={ () => setValue( value + 1 ) }
+                        onClick={ () => setItemQuantity( itemQuantity + 1 ) }
                     >
                         +
                     </button>
@@ -155,7 +150,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             >
     
                 <button 
-                    onClick={ () => handleItemToLS(id, value)}
+                    onClick={ () => handleItemToCart(id, itemQuantity, itemSize)}
                     className=
                         "bg-main-default text-primary w-[90%] h-10 sm:w-[40%] md:w-[30%] rounded-lg transition duration-500 hover:bg-main-dark"
                     >

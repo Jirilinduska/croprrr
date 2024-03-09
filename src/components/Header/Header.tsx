@@ -1,13 +1,17 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { NavLink, Link } from "react-router-dom"
 import ModalSearch from "../ModalSearch/ModalSearch";
+import { ShoppingItem } from "../../firebase/useFetch";
+import { useCart } from "../../contexts/CartContext";
 
 const Header = () => {
+
+    const { totalItems, countTotalQuantity } = useCart()
 
     const [showNav, setShowNav] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
@@ -15,6 +19,11 @@ const Header = () => {
     const closeModalSearch = () => {
         setShowSearch(false)
     }
+
+    useEffect( () => {
+        countTotalQuantity()
+    }, [countTotalQuantity] )
+
 
   return ( 
     <header className="
@@ -77,9 +86,16 @@ const Header = () => {
             <Link 
                 to="/cart"
                 onClick={ () => setShowNav(false) }
-                className="text-3xl transition duration-500 hover:text-main-dark"
+                className="relative text-3xl transition duration-500 hover:text-main-dark"
             >
                 <RiShoppingCart2Line className="cursor-pointer"/>
+
+                {totalItems >= 1 
+                ?   <div className="absolute top-[-10px] right-[-10px] w-5 h-5 bg-main-light text-center rounded-full flex items-center justify-center">
+                        <p className="text-xs">{totalItems}</p>
+                    </div>
+                : null
+                }
             </Link>
 
             {/* Hamburger menu */}
