@@ -10,23 +10,25 @@ import Loader from "../Loader/Loader"
 const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) => {
 
     const { data, loading, error } = useFetch()
-    const { removeItemFromCart } = useCart()
+    const { removeItemFromCart, addQuantityOfItem, removeQuantityOfItem } = useCart()
 
     const [oneItem, setOneItem] = useState<ShoppingItem>()
     const [quantity, setQuantity] = useState(0)
 
-    const handleFindItem = () => {
-
-        if(data) {
-            const item = data.find( (x) => x.id === id )
-            setOneItem(item)
-        }
-    }
-
     useEffect( () => {
+
+        const handleFindItem = () => {
+            if(data) {
+                const item = data.find( (x) => x.id === id )
+                setOneItem(item)
+            }
+        }
+
         handleFindItem()
-        setQuantity(itemQuantity)     
+        setQuantity(itemQuantity)  
+        
     }, [data, itemQuantity] )
+
 
   return (
     <>
@@ -35,7 +37,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
 
         {oneItem && 
         <div className="
-                flex justify-between items-center bg-gray px-2 text-sm h-24 mb-2
+                flex justify-between items-center bg-gray pr-2 text-sm h-24 mb-2
                 lg:h-[150px] lg:w-[90%] lg:mx-auto"
         >
 
@@ -64,7 +66,14 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
 
                 <button 
                     className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
-                    onClick={ () => quantity === 1 ? setQuantity(1) : setQuantity(quantity - 1)}
+                    onClick={ () => {
+                        if(quantity === 1) {
+                            setQuantity(1)
+                        } else {
+                            setQuantity(quantity - 1)
+                            removeQuantityOfItem(id, 1, oneItem.price)
+                        }
+                    }}
                 >
                     -
                 </button>
@@ -77,7 +86,10 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
                 
                 <button 
                     className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
-                    onClick={ () => setQuantity(quantity + 1) }
+                    onClick={ () => {
+                        setQuantity(quantity + 1)
+                        addQuantityOfItem(id, 1, oneItem.price) 
+                    } }
                 >
                     +
                 </button>
@@ -93,7 +105,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
                     Remove
                 </p>
 
-                <p className="font-bold">{(quantity * (parseFloat(oneItem.price))).toFixed(2)}€</p>
+                <p className="font-bold">{ ( (quantity * oneItem.price).toFixed(2) ) }€</p>
 
             </div>
 

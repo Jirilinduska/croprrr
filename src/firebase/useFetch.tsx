@@ -7,7 +7,7 @@ export interface ShoppingItem {
     beforePrice: string,
     brand: string,
     gender: string,
-    price: string,
+    price: number,
     sale: boolean,
     size: string[],
     title: string,

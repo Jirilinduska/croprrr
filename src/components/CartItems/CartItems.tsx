@@ -7,16 +7,23 @@ import { useCart } from "../../contexts/CartContext"
 
 
 const CartItems = () => {
-
-    const [itemsInCart, setItemsInCart] = useState<ShoppingItem[] | null>(null)
     
-    const { totalItems, currentCart, removeAllItems } = useCart() 
+    const { totalItems, currentCart, removeAllItems, generateCart, totalPrice, countTotalPrice } = useCart() 
+ 
+    // useEffect( () => {
+    //     generateCart()      
+    // }, [] )
 
-    const handleGetCartItems = () => setItemsInCart(currentCart)  
+    // useEffect(() => {
+    //     generateCart();
+    //     countTotalPrice(); // Přidejte tuto funkci pro aktualizaci celkové ceny při změně košíku
+    // }, [currentCart, generateCart, countTotalPrice]);
 
-    useEffect( () => {
-        handleGetCartItems()        
-    }, [currentCart] )
+    useEffect(() => {
+        generateCart();
+        countTotalPrice()
+    }, [currentCart, generateCart]);
+
 
   return (
     <section className="py-24">
@@ -24,7 +31,7 @@ const CartItems = () => {
         <div className="mx-auto flex justify-between items-center mb-4 px-2">
 
             <h3 className="font-bold">
-                { itemsInCart && itemsInCart.length >= 1 ? 'Shopping Cart' : '' }
+                { currentCart && currentCart.length >= 1 ? 'Shopping Cart' : '' }
             </h3>
         
             <p 
@@ -33,30 +40,33 @@ const CartItems = () => {
                     removeAllItems()
                 }}
             >
-                { itemsInCart && itemsInCart.length >= 1 ? 'Remove all' : '' }
+                { currentCart && currentCart.length >= 1 ? 'Remove all' : '' }
             </p>
         
         </div>
 
 
         <div className="">
-            { itemsInCart && itemsInCart.map( (oneItem) => <CartItem key={oneItem.id} {...oneItem}/>)}
-            { itemsInCart && itemsInCart.length === 0 ? <EmptyCart /> : null }
+            { currentCart && currentCart.map( (oneItem) => <CartItem key={oneItem.id} {...oneItem}/>)}
+            { currentCart && currentCart.length === 0 ? <EmptyCart /> : null }
         </div>
 
-        <div className="w-[90%] mx-auto">
 
-            <div className="flex items-center justify-between mb-8">
-                <p className="font-bold">Total items</p>
-                <p className="font-bold">{totalItems}</p>
-            </div>
+            { totalItems && 
 
-            <div className="flex items-center justify-between">
-                <p className="font-bold">Total Price</p>
-                <p className="font-bold">€</p>
-            </div>
+                <div className="w-[90%] mx-auto mt-8">
 
-        </div>
+                    <div className="flex items-center justify-between mb-8 border-b-2 border-b-gray">
+                        <p className="font-bold">Total items</p>
+                        <p className="font-bold">{totalItems}</p>
+                    </div>
+
+                    <div className="flex items-center justify-between border-b-2 border-b-gray">
+                        <p className="font-bold">Total Price</p>
+                        <p className="font-bold">{(totalPrice.toFixed(2))}€</p>
+                    </div>
+                </div>
+            }
 
     </section>
   )

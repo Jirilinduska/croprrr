@@ -1,17 +1,16 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { RiShoppingCart2Line } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoSearch } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
 import { NavLink, Link } from "react-router-dom"
 import ModalSearch from "../ModalSearch/ModalSearch";
-import { ShoppingItem } from "../../firebase/useFetch";
 import { useCart } from "../../contexts/CartContext";
 
 const Header = () => {
 
-    const { totalItems, countTotalQuantity } = useCart()
+    const { totalItems } = useCart()
 
     const [showNav, setShowNav] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
@@ -19,10 +18,6 @@ const Header = () => {
     const closeModalSearch = () => {
         setShowSearch(false)
     }
-
-    useEffect( () => {
-        countTotalQuantity()
-    }, [countTotalQuantity] )
 
 
   return ( 

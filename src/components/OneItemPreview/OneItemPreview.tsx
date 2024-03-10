@@ -19,12 +19,12 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
     const { loading } = useFetch()
     const { currentCart, addItemToCart } = useCart()
 
-    const handleItemToCart = (itemID: string, itemValue: number, itemSize: string) => {
+    const handleItemToCart = (itemID: string, itemValue: number, itemSize: string, price: number) => {
         
         const isItemIn = currentCart.find( (x: ShoppingItem) => x.id === itemID)
 
         if(!isItemIn) {
-            addItemToCart(itemID, itemValue, itemSize)
+            addItemToCart(itemID, itemValue, itemSize, price)
             handleNotificationSuccess()
         } else {
             handleNotificationError()
@@ -150,7 +150,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             >
     
                 <button 
-                    onClick={ () => handleItemToCart(id, itemQuantity, itemSize)}
+                    onClick={ () => handleItemToCart(id, itemQuantity, itemSize, price) }
                     className=
                         "bg-main-default text-primary w-[90%] h-10 sm:w-[40%] md:w-[30%] rounded-lg transition duration-500 hover:bg-main-dark"
                     >
@@ -171,11 +171,11 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         >
 
                 <Slider {...settings}>
-                    { image.map( (x) => {
+                    { image.map( (imageSrc) => {
                         return (
                             <div className="w-[100%] h-[450px]">
                                 <img 
-                                    src={x} 
+                                    src={imageSrc} 
                                     className="w-[100%] h-[100%] object-contain"
                                     alt={title}
                                 />
