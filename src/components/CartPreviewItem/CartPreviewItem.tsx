@@ -2,13 +2,16 @@ import { useEffect, useState } from "react"
 import { ShoppingItem } from "../../firebase/useFetch"
 import useFetch from "../../firebase/useFetch"
 import { Link } from "react-router-dom"
+import { IoIosRemoveCircle } from "react-icons/io";
+
 
 interface CartPreviewItemProps {
     oneItem: ShoppingItem,
-    closeCartPreview: () => void
+    closeCartPreview: () => void,
+    removeItemFromCart: (itemID: string) => void,
 }
 
-const CartPreviewItem: React.FC<CartPreviewItemProps> = ( { oneItem, closeCartPreview } ) => {
+const CartPreviewItem: React.FC<CartPreviewItemProps> = ( { oneItem, closeCartPreview, removeItemFromCart } ) => {
 
     const { data } = useFetch()
     const [item, setItem] = useState<ShoppingItem | undefined>(undefined)
@@ -24,13 +27,12 @@ const CartPreviewItem: React.FC<CartPreviewItemProps> = ( { oneItem, closeCartPr
 
   return (
 
+
         <>
             { item && 
 
-                <Link 
-                    className="h-14 w-full flex items-center justify-between mb-2 hover:bg-main-default"
-                    to={`/preview/${oneItem.id}`}
-                    onClick={closeCartPreview}
+                <div 
+                    className="relative h-14 w-[90%] flex items-center justify-between mb-2 hover:bg-main-default"
                 >
                     
                     <div className="flex-grow-0 h-full mr-2">
@@ -41,19 +43,32 @@ const CartPreviewItem: React.FC<CartPreviewItemProps> = ( { oneItem, closeCartPr
                         />
                     </div>
 
-                    <div className="w-28">
+                    <Link 
+                        to={`/preview/${oneItem.id}`} 
+                        onClick={closeCartPreview}
+                        className="w-28 hover:underline flex-grow-0"
+                    >
                         <p className="text-xs">{item.title}</p>
-                    </div>
+                    </Link>
 
-                    <div className="text-xs font-bold">
+                    <div className="text-xs font-bold flex-grow-0">
                         <p className="">{oneItem.itemQuantity}x</p>
                     </div>
 
-                    <div className="text-xs font-bold">
+                    <div className="text-xs font-bold flex-grow-0">
                         <p>{oneItem.price * oneItem.itemQuantity}€</p>
                     </div>
 
-                </Link>
+                    <div className="absolute right-[-30px] top-[50%] translate-y-[-50%]">
+
+                        <IoIosRemoveCircle 
+                            className="text-red-500 text-xl cursor-pointer transition duration-500 hover:text-red-700"
+                            onClick={ () => removeItemFromCart(oneItem.id)}
+                        />
+
+                    </div>
+
+                </div>
             }
         </>
 

@@ -76,6 +76,7 @@ const Header = () => {
                 onClick={ () => {
                     setShowNav(false)
                     setShowSearch(true)
+                    setShowCart(false)
                 } }
             >
                 <IoSearch className="cursor-pointer"/>

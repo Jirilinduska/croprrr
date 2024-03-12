@@ -55,7 +55,7 @@ export const CartProvider: React.FC<CartProviderProps> = ( { children } ) => {
         const updatedCart = [...currentCart, newItem as ShoppingItem]
         updateItemsLS(updatedCart)
         setCurrentCart(updatedCart)
-        countTotalQuantity()
+        countTotalQuantity() 
         countTotalPrice()
     }
 
