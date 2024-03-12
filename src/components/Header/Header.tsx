@@ -7,16 +7,22 @@ import { RxCross1 } from "react-icons/rx";
 import { NavLink, Link } from "react-router-dom"
 import ModalSearch from "../ModalSearch/ModalSearch";
 import { useCart } from "../../contexts/CartContext";
+import CartPreviewHeader from "../CartPreviewHeader/CartPreviewHeader";
 
 const Header = () => {
 
-    const { totalItems } = useCart()
+    const { totalItems, totalPrice } = useCart()
 
     const [showNav, setShowNav] = useState(false)
     const [showSearch, setShowSearch] = useState(false)
+    const [showCart, setShowCart] = useState(false)
 
     const closeModalSearch = () => {
         setShowSearch(false)
+    }
+
+    const closeCartPreview = () => {
+        setShowCart(false)
     }
 
 
@@ -78,20 +84,24 @@ const Header = () => {
             { showSearch && <ModalSearch closeModalSearch={closeModalSearch}/> }
 
             {/* Shopping Cart */}
-            <Link 
-                to="/cart"
-                onClick={ () => setShowNav(false) }
-                className="relative text-3xl transition duration-500 hover:text-main-dark"
+            <div 
+                onClick={ () => {
+                    setShowNav(false)
+                    setShowCart(!showCart)
+                } }
+                className="relative text-3xl"
             >
-                <RiShoppingCart2Line className="cursor-pointer"/>
+                <RiShoppingCart2Line className={`cursor-pointer ${ showCart && 'text-main-default'}`}/>
 
-                {totalItems >= 1 
+                { totalItems >= 1 
                 ?   <div className="absolute top-[-10px] right-[-10px] w-5 h-5 bg-main-light text-center rounded-full flex items-center justify-center">
                         <p className="text-xs">{totalItems}</p>
                     </div>
                 : null
                 }
-            </Link>
+            </div>
+
+            { showCart && <CartPreviewHeader closeCartPreview={closeCartPreview}/> }
 
             {/* Hamburger menu */}
             <div 

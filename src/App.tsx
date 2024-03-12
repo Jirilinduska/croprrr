@@ -7,6 +7,7 @@ import Shop from "./pages/Shop/Shop"
 import Preview from "./pages/Preview/Preview"
 import Cart from "./pages/Cart/Cart"
 import Sales from "./pages/Sales/Sales"
+import Error from "./pages/Error/Error"
 
 const App = () => {
   return (
@@ -26,6 +27,8 @@ const App = () => {
                 <Route path="/cart" element={ <Cart /> } />
 
                 <Route path="/sales" element={ <Sales /> } />
+
+                <Route path="*" element={ <Error /> } />
 
             </Route>
 
