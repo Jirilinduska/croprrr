@@ -9,15 +9,6 @@ import { useCart } from "../../contexts/CartContext"
 const CartItems = () => {
     
     const { totalItems, currentCart, removeAllItems, generateCart, totalPrice, countTotalPrice } = useCart() 
- 
-    // useEffect( () => {
-    //     generateCart()      
-    // }, [] )
-
-    // useEffect(() => {
-    //     generateCart();
-    //     countTotalPrice(); // Přidejte tuto funkci pro aktualizaci celkové ceny při změně košíku
-    // }, [currentCart, generateCart, countTotalPrice]);
 
     useEffect(() => {
         generateCart();
@@ -26,7 +17,7 @@ const CartItems = () => {
 
 
   return (
-    <section className="py-24">
+    <section className="py-24 w-[90%] mx-auto md:w-[70%]">
 
         <div className="mx-auto flex justify-between items-center mb-4 px-2">
 

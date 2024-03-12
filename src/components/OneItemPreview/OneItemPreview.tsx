@@ -60,8 +60,9 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
 
   return ( 
     <section className="
-            py-24 w-[100%] mx-auto min-h-[100vh] bg-gray
-            lg:flex lg:justify-between lg:gap-10" 
+            py-24 w-full mx-auto min-h-[100vh]
+            lg:flex lg:justify-between lg:gap-10 lg:w-[90%]
+            xl:w-[70%]" 
     > 
  
         { loading && <Loader/>}
@@ -85,14 +86,14 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         {/* TEXT - ITEM INFO*/}
         <div className="
                 px-4 mb-10
-                lg:w-[50%] lg:flex lg:flex-col"
+                lg:w-[40%] lg:flex lg:flex-col lg:order-1"
         >
 
-            <h3 className="font-bold text-xl mb-4">{title}</h3>
+            <h3 className="font-bold text-xl mb-6">{title}</h3>
         
             <div className="flex justify-between items-center text-lg mb-4">
 
-                <p className="">{brand}</p>
+                <p className="">Brand: {brand}</p>
 
                 <p className="text-main-dark">{gender}</p>
 
@@ -102,7 +103,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             {/* Select size element */}
             <div className="flex justify-between items-center mb-6">
 
-                <p className="">{type}</p>
+                <p className="">Category: {type}</p>
 
                 <select 
                     name="" 
@@ -167,7 +168,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         <div 
             className="
                     overflow-hidden pb-10
-                    lg:w-[50%]"
+                    lg:w-[60%]"
         >
 
                 <Slider {...settings}>
@@ -176,7 +177,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                             <div className="w-[100%] h-[450px]">
                                 <img 
                                     src={imageSrc} 
-                                    className="w-[100%] h-[100%] object-contain"
+                                    className="w-[100%] h-[100%] object-contain lg:object-cover"
                                     alt={title}
                                 />
                             </div>

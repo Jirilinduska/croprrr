@@ -55,8 +55,8 @@ const CartPreviewItem: React.FC<CartPreviewItemProps> = ( { oneItem, closeCartPr
                         <p className="">{oneItem.itemQuantity}x</p>
                     </div>
 
-                    <div className="text-xs font-bold flex-grow-0">
-                        <p>{oneItem.price * oneItem.itemQuantity}€</p>
+                    <div className="text-xs font-bold">
+                        <p>{ (oneItem.price * oneItem.itemQuantity).toFixed(2) }€</p>
                     </div>
 
                     <div className="absolute right-[-30px] top-[50%] translate-y-[-50%]">

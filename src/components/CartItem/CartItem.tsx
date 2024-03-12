@@ -37,8 +37,8 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
 
         {oneItem && 
         <div className="
-                flex justify-between items-center bg-gray pr-2 text-sm h-24 mb-2
-                lg:h-[150px] lg:w-[90%] lg:mx-auto"
+                flex justify-between items-center bg-gray pr-2 text-sm h-24 mb-2 rounded-lg overflow-hidden
+                lg:h-[120px] lg:w-[90%] lg:mx-auto"
         >
 
             <div 
@@ -49,11 +49,11 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
             >    
             </div>
 
-            <div className="w-[40%]">
+            <div className="w-[40%] pl-2 sm:p-0">
 
                 <Link 
                     to={`/preview/${id}`} 
-                    className="font-bold text-sm hover:underline"
+                    className="font-bold text-xs hover:underline sm:text-sm"
                 >
                     {oneItem.title}
                 </Link>
@@ -65,7 +65,7 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
             <div className="flex items-center justify-center border-2 border-main-default rounded-lg">
 
                 <button 
-                    className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
+                    className="w-[20px] h-[20px] sm:h-[30px] sm:w-[30px] bg-main-default font-bold text-white active:bg-main-dark"
                     onClick={ () => {
                         if(quantity === 1) {
                             setQuantity(1)
@@ -79,13 +79,13 @@ const CartItem: React.FC<ShoppingItem> = ( { id, itemQuantity, chosenSize } ) =>
                 </button>
 
                 <p 
-                    className="h-[30px] w-[30px] bg-primary md:w-[40px] md:h-[40px] flex items-center justify-center font-bold"
+                    className="w-[20px] h-[20px] sm:h-[30px] sm:w-[30px] bg-primary flex items-center justify-center font-bold"
                 >
                     {quantity}
                 </p>
                 
                 <button 
-                    className="h-[30px] w-[30px] bg-main-default md:w-[40px] md:h-[40px] font-bold text-white active:bg-main-dark"
+                    className="w-[20px] h-[20px] sm:h-[30px] sm:w-[30px] bg-main-default font-bold text-white active:bg-main-dark"
                     onClick={ () => {
                         setQuantity(quantity + 1)
                         addQuantityOfItem(id, 1, oneItem.price) 
