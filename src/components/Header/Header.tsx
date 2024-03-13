@@ -61,7 +61,7 @@ const Header = () => {
 
             <NavLink onClick={ () => setShowNav(false) } to="/sales" className="text-secondary hover:underline">Sales</NavLink>
 
-            <NavLink onClick={ () => setShowNav(false) } to="/" className="text-secondary hover:underline">Contact</NavLink>
+            <NavLink onClick={ () => setShowNav(false) } to="/contact" className="text-secondary hover:underline">Contact</NavLink>
 
         </nav>
 

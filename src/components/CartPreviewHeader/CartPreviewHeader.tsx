@@ -32,7 +32,7 @@ const CartPreviewHeader: React.FC<CartPreviewHeaderProps> = ( { closeCartPreview
 
         { currentCart && currentCart.length === 0 && 
             <div className="flex items-center justify-center h-full w-full">
-                <p className="text-center">ShoppingCart is empty!</p>
+                <p className="text-center">Shopping cart is empty...</p>
             </div> 
         }
 
@@ -60,19 +60,21 @@ const CartPreviewHeader: React.FC<CartPreviewHeaderProps> = ( { closeCartPreview
             </div>
         }
 
-        <div className="absolute bottom-[60px] h-[40px] w-full pl-4 text-lg left-0 flex justify-between items-center bg-primary">
+        { currentCart && currentCart.length >= 1 && 
+            <div className="absolute bottom-[60px] h-[40px] w-full pl-4 text-lg left-0 flex justify-between items-center bg-primary">
 
-            <p className="text-sm font-bold">Total Price: {totalPrice.toFixed(2)}€</p>
+                <p className="text-sm font-bold">Total Price: {totalPrice.toFixed(2)}€</p>
 
-            <Link
-                to="/cart"
-                className="text-sm w-[30%] h-full bg-main-default p-2 text-white flex justify-center items-center transition duration-500 hover:bg-main-dark"
-                onClick={closeCartPreview}
-            >
-                Go To Cart
-            </Link>
+                <Link
+                    to="/cart"
+                    className="text-sm w-[30%] h-full bg-main-default p-2 text-white flex justify-center items-center transition duration-500 hover:bg-main-dark"
+                    onClick={closeCartPreview}
+                >
+                    Go To Cart
+                </Link>
 
-        </div>
+            </div>
+        }
 
     </div>
   )

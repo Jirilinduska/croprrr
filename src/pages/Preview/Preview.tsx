@@ -29,6 +29,7 @@ const Preview = () => {
 
     useEffect( () => {
         findItem()
+        document.title = oneItem ? `${oneItem.title} | Croprrr 🛒 ` : 'Croprrr 🛒'
     }, [findItem, itemID] )
 
   return (
