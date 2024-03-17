@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 const ItemsGrid = () => { 
   return (
     <section className="
-                    w-[90%] mx-auto h-[100vh] py-6 grid grid-cols-1 grid-rows-4 gap-4 
+                    w-[90%] mx-auto h-screen py-6 grid grid-cols-1 grid-rows-4 gap-4 
                     lg:h-[80vh] lg:grid-cols-3 lg:grid-rows-2"
     >
 

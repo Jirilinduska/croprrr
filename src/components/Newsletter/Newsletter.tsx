@@ -29,8 +29,8 @@ const Newsletter = () => {
 
                 <input 
                     type="text" 
-                    placeholder="Enter your email adress.."
-                    className="h-11 focus:outline-none flex-grow"
+                    placeholder="Enter your email"
+                    className="h-11 text-xs focus:outline-none sm:text-base flex-grow"
                 />
 
                 <button 

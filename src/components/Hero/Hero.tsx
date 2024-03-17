@@ -6,7 +6,7 @@ const Hero = () => {
 return (
     
     <section 
-        className="flex flex-col justify-center items-center gap-10 h-screen w-[100%] bg-cover bg-no-repeat bg-center"
+        className="flex flex-col justify-center items-center gap-10 h-screen w-full bg-cover bg-no-repeat bg-center"
         style={{backgroundImage: 'url("/images/hero/hero-banner-1.jpg")'}}
     >
         

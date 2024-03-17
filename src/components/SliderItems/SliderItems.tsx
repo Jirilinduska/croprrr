@@ -6,13 +6,13 @@ import { useEffect, useState } from "react"
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import { ShoppingItem } from "../../firebase/useFetch"
 
 const SliderItems = () => { 
 
     const { data, loading, error  } = useFetch()
 
-    const [items, setItems] = useState(data)
+    const [items, setItems] = useState<ShoppingItem[] | null >([])
 
     const settings = {
       dots: false,
@@ -49,6 +49,7 @@ const SliderItems = () => {
 
       <Slider {...settings}>
         {loading && <Loader /> }
+        {error && <p>Something went wrong</p> }
         {items && items.map( (x) => <ShopItem key={x.id} {...x} /> )} 
       </Slider>
 
