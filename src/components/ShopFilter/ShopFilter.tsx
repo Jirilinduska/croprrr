@@ -15,7 +15,7 @@ interface ShopFilterProps {
 
 const ShopFilter: React.FC<ShopFilterProps> = ( { showFilter, handleCloseFilter, handleGender, activeGender, type, handleType } ) => {
 
-    const categories = ['Shoes', 'Shirts', 'Hoodies']
+    const categories = ['Shoes', 'Shirts', 'Hoodies', 'Accessories']
 
   return (
     <div 
