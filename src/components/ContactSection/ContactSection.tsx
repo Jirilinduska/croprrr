@@ -8,13 +8,14 @@ const ContactSection = () => {
 
             <h2 className="font-bold">Thanks for visiting my page!</h2>
 
-            <p className="text-center">design + code <Link to="https://jiri-linduska.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@jirilinduska</Link>, <br /> images <Link to="https://www.queens.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@queens.cz</Link> </p>
+            <p className="text-center">design + code 
+                <Link to="https://jirilinduska.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@jirilinduska</Link>, <br /> images <Link to="https://www.queens.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@queens.cz</Link> </p>
 
             <Link
-                to="https://jiri-linduska.cz"
+                to="https://jirilinduska.cz"
                 className="text-main-default transition duration-500 hover:text-main-dark hover:underline"
             >
-                https://jiri-linduska.cz/
+                https://jirilinduska.cz/
             </Link>
 
             <Link

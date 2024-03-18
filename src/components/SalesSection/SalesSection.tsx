@@ -4,18 +4,23 @@ import { useEffect, useState } from "react"
 import useFetch from "../../firebase/useFetch"
 import ShopItem from "../ShopItem/ShopItem"
 import Loader from "../Loader/Loader"
+import { ShoppingItem } from "../../firebase/useFetch"
+
 
 const SalesSection = () => {
 
     const { data, loading, error } = useFetch()
-    const [items, setItems] = useState(data)
+    const [items, setItems] = useState<ShoppingItem[] | null>([])
 
     useEffect( () => {
-        setItems( data && data.filter( (x) => x.sale === true) )
+
+      if(data) {
+        setItems(data.filter( (x) => x.sale === true) )
+      }
     }, [data] )
 
   return (
-    <section className="w-[90%] mx-auto min-h-[100vh] py-24">
+    <section className="w-[90%] mx-auto min-h-screen py-24">
 
         { loading && <Loader /> }
 
@@ -23,6 +28,7 @@ const SalesSection = () => {
 
         <div className="flex justify-center items-center flex-wrap gap-6">
             { items && items.map( (x) => <ShopItem key={x.id} {...x}/> ) }
+            { error && <p className="">Something went wrong...</p> }
         </div>
 
     </section>

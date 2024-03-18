@@ -2,7 +2,7 @@
 import { ShoppingItem } from "../../firebase/useFetch" 
 import { Link } from "react-router-dom"
 
-const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sale, size, title, type, image } ) => { 
+const ShopItem: React.FC<ShoppingItem> = ( { id, beforePrice, gender, price, sale, title, image } ) => { 
     
   return ( 
     <Link

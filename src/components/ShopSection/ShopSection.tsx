@@ -12,11 +12,8 @@ const ShopSection = () => {
     const { data, error, loading } = useFetch()
 
     const [showFilter, setShowFilter] = useState(false)
-    
-
-
     const [type, setType] = useState('')
-    const [items, setItems] = useState<ShoppingItem[] | null>(data)
+    const [items, setItems] = useState<ShoppingItem[] | null>([])
     const [activeGender, setActiveGender] = useState('')
 
     const handleCloseFilter = () => setShowFilter(false)

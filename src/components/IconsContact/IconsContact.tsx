@@ -10,7 +10,7 @@ const IconsContact = () => {
     return (
     <section className="h-[50vh] flex flex-col items-center justify-center">
 
-        <h3 className="text-xl font-bold mb-4 lg:text-2xl">Heading about us</h3>
+        <h3 className="text-xl font-bold mb-4 lg:text-2xl">Contact us</h3>
 
         <p className="text-sm text-center mb-6 lg:text-base">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam, iure!</p>
 
