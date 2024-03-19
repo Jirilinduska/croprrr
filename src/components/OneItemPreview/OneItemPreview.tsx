@@ -1,7 +1,5 @@
 import { ChangeEvent, useState } from "react" 
 import { ShoppingItem } from "../../firebase/useFetch"
-import useFetch from "../../firebase/useFetch"
-import Loader from "../Loader/Loader"
 import Slider from 'react-slick'
 import AddToCartNotif from "../AddToCartNotif/AddToCartNotif"
 import 'slick-carousel/slick/slick.css';
@@ -9,14 +7,13 @@ import 'slick-carousel/slick/slick-theme.css';
 
 import { useCart } from "../../contexts/CartContext"
 
-const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, sale, size, title, type, image } ) => {
+const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gender, price, size, title, type, image } ) => {
 
     const [itemQuantity, setItemQuantity] = useState(1)
     const [itemSize, setItemSize] = useState(size[0])
     const [notifSuccess, setNotifSuccess] = useState(false)
     const [notifError, setNotifError] = useState(false)
 
-    const { loading } = useFetch()
     const { currentCart, addItemToCart } = useCart()
 
     const handleItemToCart = (itemID: string, itemValue: number, itemSize: string, price: number) => {
@@ -64,8 +61,6 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
             lg:flex lg:justify-between lg:gap-10 lg:w-[90%]
             xl:w-[70%]" 
     > 
- 
-        { loading && <Loader/>}
 
         { notifSuccess && <AddToCartNotif 
                                 itemTitle={title}
@@ -112,7 +107,7 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
                     value={itemSize}
                     onChange={handleItemSize}
                 >
-                    {size.map( (x) => <option value={x}>{x}</option>)}
+                    {size.map( (oneOption, index) => <option key={index} value={oneOption}>{oneOption}</option>)}
                 </select>
 
             </div>
@@ -172,9 +167,9 @@ const OneItemPreview: React.FC<ShoppingItem> = ( {  id, beforePrice, brand, gend
         >
 
                 <Slider {...settings}>
-                    { image.map( (imageSrc) => {
+                    { image.map( (imageSrc, index) => {
                         return (
-                            <div className="w-[100%] h-[450px]">
+                            <div key={index} className="w-[100%] h-[450px]">
                                 <img 
                                     src={imageSrc} 
                                     className="w-[100%] h-[100%] object-contain lg:object-cover"

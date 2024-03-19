@@ -9,7 +9,7 @@ const Footer = () => {
         <p>@2024</p>
 
         <Link 
-            to="https://jirilinduska.cz/" 
+            to="http://jirilinduska.cz/" 
             target="_blank"
         >
             @jirilinduska

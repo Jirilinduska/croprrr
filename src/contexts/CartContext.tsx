@@ -144,8 +144,6 @@ export const CartProvider: React.FC<CartProviderProps> = ( { children } ) => {
         countTotalPrice()
     }
     
-    
-    
     const contextValue: CartContextProps = {
         totalPrice,
         totalItems,

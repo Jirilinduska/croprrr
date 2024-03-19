@@ -13,17 +13,19 @@ const ModalSearch: React.FC<ModalSearchProps> = ( { closeModalSearch } ) => {
 
     const [inputValue, setInputValue] = useState('')
 
-    const { data, loading, error } = useFetch()
+    const { data } = useFetch()
 
-    const [array, setArray] = useState<ShoppingItem[]>()
+    const [array, setArray] = useState<ShoppingItem[]>([])
 
     const handleFilter = ( event: ChangeEvent<HTMLInputElement> ) => {
         setInputValue(event.target.value)
     }
     
     const filterArray = () => {
-        const filtered = data?.filter( (x) => x.title.toLowerCase().includes(inputValue.toLowerCase())) 
-        setArray(filtered)
+        if(data) {
+            const filtered = data.filter( (x) => x.title.toLowerCase().includes(inputValue.toLowerCase())) 
+            setArray(filtered)
+        } 
     }    
 
 

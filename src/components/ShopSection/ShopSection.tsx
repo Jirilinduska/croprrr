@@ -1,6 +1,4 @@
 import useFetch, { ShoppingItem } from "../../firebase/useFetch"
-
-
 import { IoFilter } from "react-icons/io5"
 import ShopFilter from "../ShopFilter/ShopFilter";
 import ShopItem from "../ShopItem/ShopItem"
@@ -41,7 +39,9 @@ const ShopSection = () => {
     }
 
     useEffect( () => {
-        setItems(data)
+        if(data) {
+            setItems(data)
+        }
     }, [data] )
 
   return (
@@ -53,7 +53,7 @@ const ShopSection = () => {
         {loading && <Loader /> }
 
 
-        {/* Filtered Shopping Items */}
+        {/* Filtered Shop Items */}
         {items && 
             <>
                 <div className="flex justify-center items-center flex-wrap gap-6">

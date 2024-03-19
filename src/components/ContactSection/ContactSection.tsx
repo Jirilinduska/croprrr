@@ -9,13 +9,13 @@ const ContactSection = () => {
             <h2 className="font-bold">Thanks for visiting my page!</h2>
 
             <p className="text-center">design + code 
-                <Link to="https://jirilinduska.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@jirilinduska</Link>, <br /> images <Link to="https://www.queens.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@queens.cz</Link> </p>
+                <Link to="http://jirilinduska.cz/" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@jirilinduska</Link>, <br /> images <Link to="https://www.queens.cz" className="text-main-default transition duration-500 hover:text-main-dark hover:underline">@queens.cz</Link> </p>
 
             <Link
-                to="https://jirilinduska.cz"
+                to="http://jirilinduska.cz/"
                 className="text-main-default transition duration-500 hover:text-main-dark hover:underline"
             >
-                https://jirilinduska.cz/
+                http://jirilinduska.cz
             </Link>
 
             <Link
